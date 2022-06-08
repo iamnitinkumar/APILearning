@@ -1,1 +1,1 @@
-# APILearning
+This is a project where we will be defining our own APIs and then creating stubs for the same

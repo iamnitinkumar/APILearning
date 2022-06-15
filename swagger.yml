@@ -208,8 +208,8 @@ definitions:
         description: "Password - minimum 8 characters"
       phone:
         type: "string"
-        description: "Mobile number"
-        pattern: '^\d{3}-\d{2}-\d{4}$'
+        description: "Mobile number. Its should be 10 digit (ex - xxx-xxx-xxxx)"
+        pattern: '^\d{3}-\d{3}-\d{4}$'
     xml:
       name: "User"
   order:

@@ -87,16 +87,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
+      - in: "body"
+        name: "body"
+        description: "user details parameter"
         required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+        schema:
+          $ref: "#/definitions/Register"
       responses:
         "200":
           description: "successful operation"
@@ -120,16 +116,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
+      - in: "body"
+        name: "body"
+        description: "list of users order"
         required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+        schema:
+          $ref: "#/definitions/order"
       responses:
         "200":
           description: "successful operation"
@@ -189,8 +181,7 @@ definitions:
       password:
         type: "string"
         description: "Password set during registration"
-    xml:
-      name: "login"
+    
   Register:
     type: "object"
     properties:
@@ -209,20 +200,21 @@ definitions:
       phone:
         type: "string"
         description: "Mobile number"
-    xml:
-      name: "User"
+
   order:
     type: "object"
     properties:
       itemid:
         type: "integer"
         format: "int64"
+        description: "Unique id of each item"
       itemname:
         type: "string"
+        description: "Name of the item"
       quantity:
         type: "string"
-    xml:
-      name: "Order"
+        description: "number of product"
+  
   wishlist:
     type: "object"
     properties:
@@ -234,14 +226,10 @@ definitions:
 responses:
   UnauthorizedError:
     description: User is not authorised to make the request
-    headers:
-      WWW_Authenticate:
-        type: string
+
   UnauthenticatedError:
     description: Authentication information is missing or invalid
-    headers:
-      WWW_Authenticate:
-        type: string
+
   InternalServerError:
     description: Service not available
 externalDocs:

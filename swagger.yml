@@ -119,17 +119,7 @@ paths:
       operationId: "orders"
       produces:
       - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+      
       responses:
         "200":
           description: "successful operation"
@@ -189,8 +179,6 @@ definitions:
       password:
         type: "string"
         description: "Password set during registration"
-    xml:
-      name: "login"
   Register:
     type: "object"
     properties:
@@ -209,8 +197,6 @@ definitions:
       phone:
         type: "string"
         description: "Mobile number"
-    xml:
-      name: "User"
   order:
     type: "object"
     properties:
@@ -221,16 +207,12 @@ definitions:
         type: "string"
       quantity:
         type: "string"
-    xml:
-      name: "Order"
   wishlist:
     type: "object"
     properties:
       itemname:
         type: "string"
         description: "Can be any item like shoes etc"
-    xml:
-      name: "wishlist"
 responses:
   UnauthorizedError:
     description: User is not authorised to make the request

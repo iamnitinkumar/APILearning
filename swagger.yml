@@ -87,16 +87,6 @@ paths:
       produces:
         - "application/json"
       parameters:
-        # - name: "username"
-        #   in: "query"
-        #   description: "The user name for login"
-        #   required: true
-        #   type: "string"
-        # - name: "password"
-        #   in: "query"
-        #   description: "The password for login in clear text"
-        #   required: true
-        #   type: "string"
         - in: "body"
           name: "body"
           description: "Get User Details"
@@ -106,8 +96,6 @@ paths:
       responses:
         "200":
           description: "successful operation"
-          # schema:
-          # $ref: "#/definitions/Register"
         "401":
           $ref: "#/responses/UnauthenticatedError"
         "403":
@@ -132,17 +120,6 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/order"
-
-        # - name: "username"
-        #   in: "query"
-        #   description: "The user name for login"
-        #   required: true
-        #   type: "string"
-        # - name: "password"
-        #   in: "query"
-        #   description: "The password for login in clear text"
-        #   required: true
-        #   type: "string"
       responses:
         "200":
           description: "successful operation"
@@ -225,7 +202,7 @@ definitions:
       DOB:
         type: "integer"
         format: "int64"
-        description: "Mobile number"
+        description: "Date of Birth"
     xml:
       name: "User"
   order:

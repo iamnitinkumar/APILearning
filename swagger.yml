@@ -43,13 +43,13 @@ paths:
         "200":
           description: "Successful Login"
         "401":
-          $ref: "#/responses/UnauthenticatedError"
+          $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: "#/responses/UnauthorizedError"
+          $ref: '#/responses/UnauthorizedError'
         "405":
-          description: "Method not allowed"
+          description: 'Method not allowed'
         "503":
-          $ref: "#/responses/InternalServerError"
+          $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /register:
@@ -97,11 +97,11 @@ paths:
         "200":
           description: "successful operation"
         "401":
-          $ref: "#/responses/UnauthenticatedError"
+          $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: "#/responses/UnauthorizedError"
+          $ref: '#/responses/UnauthorizedError'
         "503":
-          $ref: "#/responses/InternalServerError"
+          $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /orders:
@@ -128,11 +128,11 @@ paths:
         "204":
           description: "No Content"
         "401":
-          $ref: "#/responses/UnauthenticatedError"
+          $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: "#/responses/UnauthorizedError"
+          $ref: '#/responses/UnauthorizedError'
         "503":
-          $ref: "#/responses/InternalServerError"
+          $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /wishlist:
@@ -157,13 +157,13 @@ paths:
         "201":
           description: "Item successfully added"
         "401":
-          $ref: "#/responses/UnauthenticatedError"
+          $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: "#/responses/UnauthorizedError"
+          $ref: '#/responses/UnauthorizedError'
         "405":
           description: "Method not allowed"
         "503":
-          $ref: "#/responses/InternalServerError"
+          $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
 securityDefinitions:

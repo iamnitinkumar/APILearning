@@ -26,7 +26,7 @@ paths:
       tags:
       - "login"
       summary: "Login to the application"
-      description: ""
+      description: "User must add Username and password to authenticate"
       operationId: "loginUser"
       consumes:
       - "application/json"
@@ -44,10 +44,10 @@ paths:
           description: "Successful Login"   
         "401":
           $ref: '#/responses/UnauthenticatedError'
-        "403":
-          $ref: '#/responses/UnauthorizedError'
+        "404":
+          $ref: '#/responses/NotFoundError'
         "405":
-          description: "Method not allowed"
+          $ref: '#/responses/MethodNotAllowed'
         "503":
           $ref: '#/responses/InternalServerError'
       security:
@@ -59,6 +59,8 @@ paths:
       summary: "Create user"
       description: "This end point is to register a user"
       operationId: "registerUser"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:
@@ -74,34 +76,23 @@ paths:
         "400":
           description: "Bad request"
         "405":
-          description: "Method not allowed"
+          $ref: '#/responses/MethodNotAllowed'
         "503":
           $ref: '#/responses/InternalServerError'
-  /user:
+  /users:
     get:
       tags:
-      - "user"
+      - "users"
       summary: "Get the details of the users registered in the system"
       description: "This can be done only by an authenticated user"
       operationId: "user"
       produces:
       - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
       responses:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Register"
+            $ref: "#/definitions/users"
         "401":
           $ref: '#/responses/UnauthenticatedError'
         "403":
@@ -109,7 +100,7 @@ paths:
         "503":
           $ref: '#/responses/InternalServerError'
       security:
-        - basicAuth: []
+        - basicAuth: []  
   /orders:
     get:
       tags:
@@ -119,14 +110,11 @@ paths:
       operationId: "orders"
       produces:
       - "application/json"
-      
       responses:
         "200":
           description: "successful operation"
           schema:
             $ref: "#/definitions/order"
-        "204":
-          description: "No Content"
         "401":
           $ref: '#/responses/UnauthenticatedError'
         "403":
@@ -161,15 +149,15 @@ paths:
         "403":
           $ref: '#/responses/UnauthorizedError'
         "405":
-          description: "Method not allowed"
+          $ref: '#/responses/MethodNotAllowed'
         "503":
           $ref: '#/responses/InternalServerError'
       security:
       - basicAuth: []
 securityDefinitions:
   basicAuth:
-    type: basic
-definitions:
+      type: basic
+definitions:  
   login:
     type: "object"
     properties:
@@ -191,12 +179,30 @@ definitions:
       email:
         type: "string"
         description: "Valid email address"
-      password:
+      DOB:
         type: "string"
-        description: "Password - minimum 8 characters"
+        description: "DOB should be in MM/DD/YYYY format"
       phone:
         type: "string"
-        description: "Mobile number"
+        description: "Mobile number should be a 10 digit integer"
+  users:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+        description: "User's First name"
+      lastName:
+        type: "string"
+        description: "User's Last name"
+      email:
+        type: "string"
+        description: "User's email address"
+      DOB:
+        type: "string"
+        description: "Date of Birth"  
+      phone:
+        type: "string"
+        description: "User's Contact number"
   order:
     type: "object"
     properties:
@@ -214,18 +220,16 @@ definitions:
         type: "string"
         description: "Can be any item like shoes etc"
 responses:
+  MethodNotAllowed:
+    description: HTTP method is incorrect
   UnauthorizedError:
-    description: User is not authorised to make the request
-    headers:
-      WWW_Authenticate:
-        type: string
+    description: User is not authorised for this page
   UnauthenticatedError:
     description: Authentication information is missing or invalid
-    headers:
-      WWW_Authenticate:
-        type: string
   InternalServerError:
     description: Service not available
+  NotFoundError:
+    description: User Not found
 externalDocs:
   description: "Find out more about Swagger"
-  url: "http://swagger.io"
+  url: "http://swagger.io"          

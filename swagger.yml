@@ -43,7 +43,7 @@ paths:
         "200":
           description: "Successful Login"   
         "401":
-         description: "Authentication information is missing or invalid"
+          $ref: '#/responses/UnauthenticatedError'
         "403":
          description: "User is not authorised to make the request"
         "405":

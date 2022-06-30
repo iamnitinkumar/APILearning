@@ -45,11 +45,11 @@ paths:
         "401":
           $ref: '#/responses/UnauthenticatedError'
         "403":
-         description: "User is not authorised to make the request"
+          $ref: '#/responses/UnauthorizedError'
         "405":
           description: "Method not allowed"
         "503":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/InternalServerError'
       security:
       - basicAuth: []
   /register:
@@ -76,7 +76,7 @@ paths:
         "405":
           description: "Method not allowed"
         "503":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/InternalServerError'
   /user:
     get:
       tags:
@@ -99,11 +99,11 @@ paths:
           schema:
             $ref: "#/definitions/Register"
         "401":
-           description:  "Authentication information is missing or invalid"
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-           description:  "User is not authorised to make the request"
+            $ref: '#/responses/UnauthorizedError'
         "503":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /orders:
@@ -130,11 +130,11 @@ paths:
         "204":
           description: "No Content"
         "401":
-           description:  "Authentication information is missing or invalid"
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/UnauthorizedError'
         "503":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /wishlist:
@@ -159,13 +159,13 @@ paths:
         "201":
           description: "Item successfully added"
         "401":
-           description:  "Authentication information is missing or invalid"
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/UnauthorizedError'
         "405":
           description: "Method not allowed"
         "503":
-           description:  "User is not authorised to make the request"
+           $ref: '#/responses/InternalServerError'
       security:
       - basicAuth: []
 securityDefinitions:
@@ -180,8 +180,7 @@ definitions:
         description: "username - the email used to register"
       password:
         type: "string"
-        description: "Password set during registration"
-   
+        description: "Password set during registration"   
   Register:
     type: "object"
     properties:
@@ -199,9 +198,7 @@ definitions:
         description: "Password - minimum 8 characters"
       phone:
         type: "string"
-        description: "Mobile number"
-        
-    
+        description: "Mobile number"  
   order:
     type: "object"
     properties:
@@ -209,23 +206,31 @@ definitions:
         type: "integer"
         format: "int64"
         description: "Items unique id"
-
       itemname:
         type: "string"
-        description: "Name of the product"
-      
+        description: "Name of the product"      
       quantity:
         type: "string"
         description: "Quantity of the ordered product "
-
-   
   wishlist:
     type: "object"
     properties:
       itemname:
         type: "string"
         description: "Can be any item like shoes etc"
-   
+responses:
+  UnauthorizedError:
+    description: User is not authorised to make the request
+    headers:
+      WWW_Authenticate:
+        type: string
+  UnauthenticatedError:
+    description: Authentication information is missing or invalid
+    headers:
+      WWW_Authenticate:
+        type: string
+  InternalServerError:
+    description: Service not available  
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

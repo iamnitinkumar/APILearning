@@ -1,0 +1,28 @@
+{
+  "name": "apilearning",
+  "version": "1.0.0",
+  "description": "This is a project to try API stubs and automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamnitinkumar/APILearning.git"
+  },
+  "keywords": [
+    "API",
+    "Stubs"
+  ],
+  "author": "Nitin Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamnitinkumar/APILearning/issues"
+  },
+  "homepage": "https://github.com/iamnitinkumar/APILearning#readme",
+  "dependencies": {
+    "mountebank": "^2.6.0",
+    "node-fetch": "^2.6.7"
+  }
+}

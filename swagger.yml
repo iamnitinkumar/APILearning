@@ -41,7 +41,7 @@ paths:
           $ref: "#/definitions/login"
       responses:
         "200":
-          description: "Successful Login"   
+          description: "Successful Login"
         "401":
           $ref: '#/responses/UnauthenticatedError'
         "403":

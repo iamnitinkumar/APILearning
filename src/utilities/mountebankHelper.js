@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const settings = require('./settings');
+const settings = require('../config/settings');
 
 function postImposter(body) {
     const url = `http://127.0.0.1:${settings.port}/imposters`

@@ -1,5 +1,5 @@
-const mbHelper = require('./mountebankHelper');
-const settings = require('./settings');
+const mbHelper = require('../utilities/mountebankHelper');
+const settings = require('../config/settings');
 
 function addService() {
     const successResponse = { message: "Successful Login" }
@@ -87,6 +87,7 @@ function addService() {
     ]
 
     const imposter = {
+        name: "Login Service",
         port: settings.login_service_port,
         protocol: 'http',
         stubs: stubs,

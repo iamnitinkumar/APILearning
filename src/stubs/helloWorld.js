@@ -1,5 +1,5 @@
-const mbHelper = require('./mountebankHelper');
-const settings = require('./settings');
+const mbHelper = require('../utilities/mountebankHelper');
+const settings = require('../config/settings');
 
 function addService() {
     const response = { message: "Hello World" }
@@ -27,6 +27,7 @@ function addService() {
     ];
 
     const imposter = {
+        name: "Hello World",
         port: settings.dummy_port,
         protocol: 'http',
         stubs: stubs

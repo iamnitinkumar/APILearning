@@ -49,7 +49,7 @@ paths:
         "405":
           description: "Method not allowed"
         "503":
-          $ref: '#/responses/InternalServerError'
+           $ref: '#/responses/InternalServerError'
       security:
       - basicAuth: []
   /register:
@@ -76,7 +76,7 @@ paths:
         "405":
           description: "Method not allowed"
         "503":
-          $ref: '#/responses/InternalServerError'
+           $ref: '#/responses/InternalServerError'
   /user:
     get:
       tags:
@@ -87,27 +87,23 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+       - in: "body"
+         name: "body"
+         description: "user details parameters"
+         required: true
+         schema:
+          $ref: "#/definitions/Register"
       responses:
         "200":
           description: "successful operation"
           schema:
             $ref: "#/definitions/Register"
         "401":
-          $ref: '#/responses/UnauthenticatedError'
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: '#/responses/UnauthorizedError'
+            $ref: '#/responses/UnauthorizedError'
         "503":
-          $ref: '#/responses/InternalServerError'
+           $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /orders:
@@ -120,16 +116,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+       - in: "body"
+         name: "body"
+         description: "user details parameters"
+         required: true
+         schema:
+          $ref: "#/definitions/order"
       responses:
         "200":
           description: "successful operation"
@@ -138,11 +130,11 @@ paths:
         "204":
           description: "No Content"
         "401":
-          $ref: '#/responses/UnauthenticatedError'
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: '#/responses/UnauthorizedError'
+           $ref: '#/responses/UnauthorizedError'
         "503":
-          $ref: '#/responses/InternalServerError'
+           $ref: '#/responses/InternalServerError'
       security:
         - basicAuth: []
   /wishlist:
@@ -167,13 +159,13 @@ paths:
         "201":
           description: "Item successfully added"
         "401":
-          $ref: '#/responses/UnauthenticatedError'
+           $ref: '#/responses/UnauthenticatedError'
         "403":
-          $ref: '#/responses/UnauthorizedError'
+           $ref: '#/responses/UnauthorizedError'
         "405":
           description: "Method not allowed"
         "503":
-          $ref: '#/responses/InternalServerError'
+           $ref: '#/responses/InternalServerError'
       security:
       - basicAuth: []
 securityDefinitions:
@@ -188,9 +180,7 @@ definitions:
         description: "username - the email used to register"
       password:
         type: "string"
-        description: "Password set during registration"
-    xml:
-      name: "login"
+        description: "Password set during registration"   
   Register:
     type: "object"
     properties:
@@ -208,29 +198,26 @@ definitions:
         description: "Password - minimum 8 characters"
       phone:
         type: "string"
-        description: "Mobile number"
-    xml:
-      name: "User"
+        description: "Mobile number"  
   order:
     type: "object"
     properties:
       itemid:
         type: "integer"
         format: "int64"
+        description: "Items unique id"
       itemname:
         type: "string"
+        description: "Name of the product"      
       quantity:
         type: "string"
-    xml:
-      name: "Order"
+        description: "Quantity of the ordered product "
   wishlist:
     type: "object"
     properties:
       itemname:
         type: "string"
         description: "Can be any item like shoes etc"
-    xml:
-      name: "wishlist"
 responses:
   UnauthorizedError:
     description: User is not authorised to make the request
@@ -243,7 +230,7 @@ responses:
       WWW_Authenticate:
         type: string
   InternalServerError:
-    description: Service not available
+    description: Service not available  
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

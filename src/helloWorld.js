@@ -1,13 +1,13 @@
 const mbHelper=require('./mountebankHelper');
-const setting= require('./settings');
+const setting = require('./settings');
 
 
 function addService(){
-    const response ={ message:'Hello world'}
+    const response = { message:'Hello world'}
     
     const stubs =[
         {
-            perdicate :[
+            perdicates :[
                 {
                     equals:{
                         method: "GET",
@@ -19,7 +19,7 @@ function addService(){
                 {
                     is:{
                         statusCode: 200,
-                        hearders:{
+                        headers:{
                             "Content-Type":"application/json"
 
                         },
@@ -32,9 +32,9 @@ function addService(){
     ];
     const imposter ={
         port: setting.dummy_port,
-        protocal: 'http',
+        protocol: 'http',
         stubs:stubs
     };
     return mbHelper.postImposter(imposter);
 }
-module.exports={ addService};
+module.exports = { addService };

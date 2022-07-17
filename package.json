@@ -17,10 +17,8 @@
     "url": "https://github.com/iamnitinkumar/APILearning/issues"
   },
   "homepage": "https://github.com/iamnitinkumar/APILearning#readme",
-  "devDependencies": {
-    "mountebank": "^0.1.117"
-  },
   "dependencies": {
+    "mountebank": "^2.6.0",
     "node-fetch": "^2.6.7"
   }
 }

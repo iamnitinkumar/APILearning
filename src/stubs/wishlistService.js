@@ -12,7 +12,7 @@ function addService() {
 	const serviceNotFoundResponse = { message: 'The service is not found' }
 	const stubs = [
 		{
-			//Item successfully added
+		//Item successfully added
 			predicates: [
 				{
 					and: [

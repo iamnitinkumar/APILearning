@@ -1,7 +1,7 @@
 const mbHelper = require('../utilities/mountebankHelper');
 const settings = require('../config/settings');
 
-function addService() {
+function addLoginService() {
     const successResponse = { message: "Successful Login" }
     const unauthorisedResponse = { message: "User is not authorised to make the request" }
     const unauthenticatedResponse = { message: "Authentication information is missing or invalid" }
@@ -103,4 +103,4 @@ function addService() {
     return mbHelper.postImposter(imposter);
 }
 
-module.exports = { addService };
+module.exports = { addLoginService };

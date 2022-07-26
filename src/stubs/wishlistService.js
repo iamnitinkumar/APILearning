@@ -58,12 +58,12 @@ function addWishlistService() {
 				}],
 			// Method not allowed
 			predicates: [{
-				and: [
-					{ not: { method: 'POST' } },
-					{ startsWith: { path: '/user/auth/wishlist' } },
-					{ equals: { Headers: { WWW_Authenticate: '1234567890' } } },
-					{ equals: { body: { itemname: '1' } } },
-					],
+				not: //{
+					{equals :{ method: 'POST' }},
+					//{ startsWith: { path: '/user/auth/wishlist' } },
+					//{ equals: { Headers: { WWW_Authenticate: '1234567890' } } },
+					//{ equals: { body: { itemname: '1' } } },
+				//},
 				}],
 			responses: [{
 				is: {

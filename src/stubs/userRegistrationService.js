@@ -13,7 +13,12 @@ function addNewUser(){
                 and: [
                     { equals: { method: "POST" } },
                     { startsWith: { "path": "/createuser" } },
-                    { equals: {body: { "firstName": "Virat", "lastName": "Kholi", "email": "viratkohli@test.com", "password": "virat123", "phone": "123456789", "DOB": "15/08/1990" }}}
+                    { matches: { body: { "firstName": "^([A-Za-z\-]{1,31}$)", 
+                    "lastName": "^([A-Za-z\-]{1,31}$)", 
+                    "email": "^[a-zA-Z0-9_\\\-\\\.]+[@][a-zA-Z]+[.][a-z]{2,3}$", 
+                    "password": "^(?=.*?[a-zA-Z0-9#?!@$%^&*-]).{8,16}$",
+                    "phone": "^[8 9][0-9]{9}" }}},
+                    
                 ]
             }],
             responses:[{
@@ -26,15 +31,12 @@ function addNewUser(){
                 }
             }],
         },
+        
         {
             predicates: [{
-                and: [
-                    { equals: { method: "POST" } },
-                    { startsWith: { "path": "/createuser" } },
-                    { equals: {body: { "firstName": "", "lastName": "", "email": "", "password": "", "phone": "", "DOB": "" }}}
-                ]
+                not: {startsWith: { "path": "/createuser" }}
             }],
-            responses:[{
+                responses:[{
                 is: {
                     statusCode: 400,
                     headers: {
@@ -43,16 +45,15 @@ function addNewUser(){
                     body: JSON.stringify(badRequest)
                 }
             }]
+            
         },
+        
         {
-            predicates: [{
-                and: [
-                    { equals: { method: "POST" } },
-                    { startsWith: { "path": "/createuser" } },
-                    { equals: {body: { "firstName": "0", "lastName": "0", "email": "0", "password": "0", "phone": "0", "DOB": "0" }}}
-                ]
-            }],
-            responses:[{
+            predicates:[{
+              "not": 
+                { "equals": { method: "POST" } },
+         }],
+             responses:[{
                 is: {
                     statusCode: 405,
                     headers: {
@@ -62,7 +63,6 @@ function addNewUser(){
                 }
             }]
         },
-        
     ];
 
     const imposter = {

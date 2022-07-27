@@ -1,8 +1,9 @@
 const mb = require('mountebank')
 const settings = require('./config/settings')
 const helloWorld = require('./stubs/helloWorld')
-const loginService = require('./stubs/loginService')
-const getUser = require('./stubs/getUser')
+const loginService = require('./stubs/loginService');
+const wishlistService = require('./stubs/wishlistService');
+const getUsers = require('./stubs/getUsers');
 
 const mbServerInstance = mb.create({
     port: settings.port,
@@ -14,7 +15,7 @@ const mbServerInstance = mb.create({
 
 mbServerInstance.then(function() {
     helloWorld.addService();
-    loginService.addService();
-    getUser.addService();
-    
+    getUsers.addUserService();  
+    loginService.addLoginService();
+    wishlistService.addWishlistService();
 });

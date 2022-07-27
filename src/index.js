@@ -3,6 +3,7 @@ const settings = require('./config/settings')
 const helloWorld = require('./stubs/helloWorld');
 const loginService = require('./stubs/loginService');
 const userRegistration = require('./stubs/userRegistrationService');
+const wishlistService = require('./stubs/wishlistService');
 
 const mbServerInstance = mb.create({
     port: settings.port,
@@ -14,7 +15,9 @@ const mbServerInstance = mb.create({
 
 mbServerInstance.then(function() {
     helloWorld.addService();
-    loginService.addService();
+    loginService.addLoginService();
+    wishlistService.addWishlistService();
     userRegistration.addNewUser();
 
+    
 });

@@ -5,7 +5,7 @@ function addNewUser(){
     const successResponse = { message: "User registration complete successfully" }
     const badRequest = { message: "400 Bad Request" }
     const methodsNotAllowed = { message: "Method not allowed 405" }
-    const serviceNotFoundResponse = { message: "The service is not found 503" }
+    const serviceNotFoundResponse = { message: "The service is not found 404" }
 
     const stubs = [
         {
@@ -71,7 +71,7 @@ function addNewUser(){
         protocol: 'http',
         stubs: stubs,
         defaultResponse:{
-            "statusCode": 503,
+            "statusCode": 404,
             "headers":{
                 "connection": "close"
             },

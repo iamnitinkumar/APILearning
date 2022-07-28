@@ -4,7 +4,7 @@ function addUserService() {
     const unauthorisedResponse = { message: "User is not authorised to make the request" };
     const unauthenticatedResponse = { message: "Authentication information is missing or invalid" };
     const serviceUnavailableResponse = { message: "Service not available" };
-    const MethodNotAllowed = { message: "Please change the HTTP method"};
+    const methodNotAllowed = { message: "Please change the HTTP method"};
     const successResponse = { 
         response:[{
             First_Name: "Keth",
@@ -74,7 +74,7 @@ function addUserService() {
                 is: {
                     statusCode: 405,
                     headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(MethodNotAllowed)
+                    body: JSON.stringify(methodNotAllowed)
                 }
             }]
         } 

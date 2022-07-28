@@ -1,5 +1,5 @@
-const mb = require('mountebank')
-const settings = require('./config/settings')
+const mb = require('mountebank');
+const settings = require('./config/settings');
 const helloWorld = require('./stubs/helloWorld');
 const loginService = require('./stubs/loginService');
 const userRegistration = require('./stubs/userRegistrationService');
@@ -18,6 +18,4 @@ mbServerInstance.then(function() {
     loginService.addLoginService();
     wishlistService.addWishlistService();
     userRegistration.addNewUser();
-
-    
 });

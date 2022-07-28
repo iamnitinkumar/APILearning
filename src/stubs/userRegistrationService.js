@@ -2,11 +2,10 @@ const mbHelper = require('../utilities/mountebankHelper');
 const settings = require('../config/settings');
 
 function addNewUser(){
-    const successResponse = { message: "User registration complete successfully" }
-    const badRequest = { message: "400 Bad Request" }
-    const methodsNotAllowed = { message: "Method not allowed 405" }
-    const serviceNotFoundResponse = { message: "The service is not found 404" }
-
+    const successResponse = { message: "User registration complete successfully" };
+    const badRequest = { message: "400 Bad Request" };
+    const methodsNotAllowed = { message: "Method not allowed" };
+    const serviceNotFoundResponse = { message: "The service is not found" };
     const stubs = [
         {
             predicates:[{
@@ -18,7 +17,6 @@ function addNewUser(){
                     "email": "^[a-zA-Z0-9_\\\-\\\.]+[@][a-zA-Z]+[.][a-z]{2,3}$", 
                     "password": "^(?=.*?[a-zA-Z0-9#?!@$%^&*-]).{8,16}$",
                     "phone": "^[8 9][0-9]{9}" }}},
-                    
                 ]
             }],
             responses:[{
@@ -31,12 +29,11 @@ function addNewUser(){
                 }
             }],
         },
-        
         {
             predicates: [{
                 not: {startsWith: { "path": "/createuser" }}
             }],
-                responses:[{
+            responses:[{
                 is: {
                     statusCode: 400,
                     headers: {
@@ -45,15 +42,13 @@ function addNewUser(){
                     body: JSON.stringify(badRequest)
                 }
             }]
-            
         },
-        
         {
             predicates:[{
-              "not": 
+                "not":
                 { "equals": { method: "POST" } },
-         }],
-             responses:[{
+            }],
+            responses:[{
                 is: {
                     statusCode: 405,
                     headers: {
@@ -64,7 +59,6 @@ function addNewUser(){
             }]
         },
     ];
-
     const imposter = {
         name: "User Registration",
         port: settings.user_registration_service_port,
@@ -78,7 +72,6 @@ function addNewUser(){
             body: JSON.stringify(serviceNotFoundResponse)
         }
     };
-
     return mbHelper.postImposter(imposter);
 }
 module.exports = { addNewUser };

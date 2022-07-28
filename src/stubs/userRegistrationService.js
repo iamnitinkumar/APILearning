@@ -4,8 +4,8 @@ const settings = require('../config/settings');
 function addNewUser(){
     const successResponse = { message: "User registration complete successfully" }
     const badRequest = { message: "400 Bad Request" }
-    const methodsNotAllowed = { message: "Method not allowed 405" }
-    const serviceNotFoundResponse = { message: "The service is not found 404" }
+    const methodsNotAllowed = { message: "Method not allowed" }
+    const serviceNotFoundResponse = { message: "The service is not found" }
     const stubs = [
         {
             predicates:[{
@@ -17,8 +17,8 @@ function addNewUser(){
                     "email": "^[a-zA-Z0-9_\\\-\\\.]+[@][a-zA-Z]+[.][a-z]{2,3}$", 
                     "password": "^(?=.*?[a-zA-Z0-9#?!@$%^&*-]).{8,16}$",
                     "phone": "^[8 9][0-9]{9}" }}},
-                    ]
-                }],
+                ]
+            }],
             responses:[{
                 is: {
                     statusCode: 201,
@@ -45,8 +45,7 @@ function addNewUser(){
         }, 
         {
             predicates:[{
-              "not": 
-                { "equals": { method: "POST" } },
+                not: { "equals": { method: "POST" } },
             }],
             responses:[{
                 is: {
@@ -59,7 +58,6 @@ function addNewUser(){
             }]
         },
     ];
-
     const imposter = {
         name: "User Registration",
         port: settings.user_registration_service_port,
@@ -73,7 +71,6 @@ function addNewUser(){
             body: JSON.stringify(serviceNotFoundResponse)
         }
     };
-
     return mbHelper.postImposter(imposter);
 }
 module.exports = { addNewUser };
